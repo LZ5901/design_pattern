@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //面向对象编程
+        //JS描述一下就来对象，对象字面量
+        class Flower {
+            constructor(type, nums) {
+                this.type = type //类型
+                this.nums = nums
+            }
+        }
+
+        const lz = {//构建对象
+            name: 'lz',
+            hometown: '海南珠海',
+            isSingle: false
+        }
+
+        const wp = {
+            name: 'wp',
+            hometown: '赣州',
+            isSingle: true,
+            age: 22,
+            sendFlower(target){
+                const flower = new Flower("红玫瑰" , 11);
+                target.receiveFlower(flower , this.name);
+            }
+        }
+        //女主
+        const xm = {
+            name: '小美',
+            xq: 50,
+            receiveFlower(flower , sender){
+                if(this.xq < 80){
+                    console.log('不约');
+                }else{
+                    console.log(this.name + '收到了' + sender.name + '送的' + flower.nums + '朵' + flower.type);
+                    console.log('学府走一波');
+                }
+            }
+        }
+        //小情人
+        const xh = {
+            name: '小红',
+            hometown: '赣州',
+            receiveFlower(flower , sender){
+                if(sender.name == 'wp'){
+                    //精准的控制
+                    console.log('我帮你送一下吧');
+                    setTimeout(() => {
+                        xm.xq = 90 ;
+                        xm.receiveFlower(flower , sender);
+                    }, 2000) //定时器
+                    
+                }
+                //console.log(this.name + '收到了' + sender.name + '送的' + flower.nums + '朵' + flower.type);
+            }
+        }
+    </script>
+</body>
+</html>
